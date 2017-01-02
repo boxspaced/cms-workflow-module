@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title></title>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+
+        <link rel="stylesheet" type="text/css" href="/yui/reset/reset-min.css" />
+        <link rel="stylesheet" type="text/css" href="/yui/fonts/fonts-min.css" />
+        <link rel="stylesheet" type="text/css" href="/yui/button/assets/skins/sam/button.css" />
+        <link rel="stylesheet" type="text/css" href="/yui/menu/assets/skins/sam/menu.css" />
+
+        <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+
+        <script type="text/javascript" src="/yui/utilities/utilities.js"></script>
+        <script type="text/javascript" src="/yui/button/button-min.js"></script>
+
+        <script type="text/javascript" src="/js/buttons.js"></script>
+        <script type="text/javascript" src="/js/general.js"></script>
+    </head>
+
+    <body class="yui-skin-sam">
+
+        <div id="top"><!-- Start top area -->
+
+        </div><!-- End top area -->
+
+        <div id="stage"><!-- Start stage area -->
+
+            <div class="white-box" style="margin: 10% auto 0 auto; width: 500px;"><!-- Start fieldset -->
+                <div class="white-box-rounded-corner-top"><div></div></div>
+                <div class="white-box-content">
+                    <div class="white-box-title">Please confirm this action</div>
+                    <?php echo $this->messages() ?>
+
+                    <?php
+                    $form = $this->form;
+                    $form->prepare();
+                    ?>
+
+                    <?php echo $this->form()->openTag($form) ?>
+
+                        <?php echo $this->adminFormElement($form->get('id')) ?>
+                        <?php echo $this->adminFormElement($form->get('moduleName')) ?>
+                        <?php echo $this->adminFormElement($form->get('token')) ?>
+
+                        <div class="form-element">
+                            <div class="form-inputs line-up">
+                                <?php
+                                $form->get('confirm')->setAttribute('class', 'button');
+                                echo $this->formElement($form->get('confirm')) ?>
+                            </div>
+                        </div>
+                    <?php echo $this->form()->closeTag() ?>
+
+                </div>
+            </div><!-- End fieldset -->
+
+        </div><!-- End stage area -->
+
+    </body>
+</html>

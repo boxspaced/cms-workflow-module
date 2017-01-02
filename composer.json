@@ -1,0 +1,17 @@
+{
+    "name": "boxspaced/cms-workflow-module",
+    "require": {
+
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Workflow\\": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin/",
+        "process-timeout": 1200
+    }
+}

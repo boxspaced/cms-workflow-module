@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title></title>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+
+        <link rel="stylesheet" type="text/css" href="/yui/reset/reset-min.css" />
+        <link rel="stylesheet" type="text/css" href="/yui/fonts/fonts-min.css" />
+        <link rel="stylesheet" type="text/css" href="/yui/button/assets/skins/sam/button.css" />
+        <link rel="stylesheet" type="text/css" href="/yui/menu/assets/skins/sam/menu.css" />
+        <link rel="stylesheet" type="text/css" href="/yui/container/assets/skins/sam/container.css" />
+
+        <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+
+        <script type="text/javascript" src="/yui/utilities/utilities.js"></script>
+        <script type="text/javascript" src="/yui/container/container-min.js"></script>
+        <script type="text/javascript" src="/yui/menu/menu-min.js"></script>
+        <script type="text/javascript" src="/yui/button/button-min.js"></script>
+
+        <script type="text/javascript" src="/js/index_buttons.js"></script>
+        <script type="text/javascript" src="/js/general.js"></script>
+        <script type="text/javascript" src="/js/dynamic_tables.js"></script>
+        <script type="text/javascript" src="/js/dialogs.js"></script>
+    </head>
+
+    <body class="yui-skin-sam"><?php echo $this->adminNavigation ?>
+
+        <div class="title">Index of: Authoring</div>
+
+        <?php echo $this->messages() ?>
+
+        <div class="actions">
+            <img src="/images/icons/add.png" alt="Add icon" />
+            <a class="link-button" href="<?php echo $this->url('item', ['action' => 'create']); ?>">Create new</a>
+        </div><!-- End actions div -->
+
+        </div><!-- End top area -->
+
+        <div id="stage"><!-- Start stage area -->
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th colspan="3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if ($this->authoringItems) : ?>
+                    <?php echo $this->partialLoop('workflow/workflow/authoring-item.phtml', $this->authoringItems) ?>
+                    <?php else : ?>
+                    <tr class="odd"><td width="100%">Empty result set</td><td colspan="3">&nbsp;</td></tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+
+            <?php echo $this->paginationControl(
+                $this->paginator,
+                'Sliding',
+                'workflow/workflow/admin-pagination.phtml',
+                [
+                    'route' => [
+                        'name' => 'workflow',
+                        'params' => [
+                            'action' => 'authoring',
+                        ],
+                    ],
+                ]
+            ); ?>
+
+        </div><!-- End stage area -->
+
+    </body>
+</html>
