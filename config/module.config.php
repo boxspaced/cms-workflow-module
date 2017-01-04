@@ -3,6 +3,7 @@ namespace Workflow;
 
 use Zend\Router\Http\Segment;
 use Core\Model\ServiceFactory;
+use Zend\Permissions\Acl\Acl;
 
 return [
     'router' => [
@@ -22,6 +23,34 @@ return [
                 ],
             ],
             // LIFO
+        ],
+    ],
+    'acl' => [
+        'resources' => [
+            [
+                'id' => Controller\WorkflowController::class,
+            ],
+        ],
+        'rules' => [
+            [
+                'type' => Acl::TYPE_ALLOW,
+                'roles' => 'author',
+                'resources' => Controller\WorkflowController::class,
+                'privileges' => [
+                    'authoring',
+                    'authoring-delete',
+                ],
+            ],
+            [
+                'type' => Acl::TYPE_ALLOW,
+                'roles' => 'publisher',
+                'resources' => Controller\WorkflowController::class,
+                'privileges' => [
+                    'publishing',
+                    'send-back',
+                    'publishing-delete',
+                ],
+            ],
         ],
     ],
     'service_manager' => [
