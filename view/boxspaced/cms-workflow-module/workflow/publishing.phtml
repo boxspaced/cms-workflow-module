@@ -56,7 +56,7 @@
                 </thead>
                 <tbody>
                     <?php if ($this->publishingItems) : ?>
-                    <?php echo $this->partialLoop('workflow/workflow/publishing-item.phtml', $this->publishingItems) ?>
+                    <?php echo $this->partialLoop('cms-workflow-module/workflow/publishing-item.phtml', $this->publishingItems) ?>
                     <?php else : ?>
                     <tr class="odd"><td width="100%">Empty result set</td><td colspan="5">&nbsp;</td></tr>
                     <?php endif; ?>
@@ -66,7 +66,7 @@
             <?php echo $this->paginationControl(
                 $this->paginator,
                 'Sliding',
-                'workflow/workflow/admin-pagination.phtml',
+                'cms-workflow-module/workflow/admin-pagination.phtml',
                 [
                     'route' => [
                         'name' => 'workflow',

@@ -92,7 +92,7 @@ class WorkflowController extends AbstractActionController
      */
     public function authoringDeleteAction()
     {
-        $this->view->setTemplate('workflow/workflow/confirm.phtml');
+        $this->view->setTemplate('cms-workflow-module/workflow/confirm.phtml');
         return $this->handleDelete('authoring');
     }
 
@@ -101,7 +101,7 @@ class WorkflowController extends AbstractActionController
      */
     public function publishingDeleteAction()
     {
-        $this->view->setTemplate('workflow/workflow/confirm.phtml');
+        $this->view->setTemplate('cms-workflow-module/workflow/confirm.phtml');
         return $this->handleDelete('publishing');
     }
 
