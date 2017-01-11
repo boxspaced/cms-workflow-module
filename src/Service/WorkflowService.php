@@ -187,7 +187,7 @@ class WorkflowService
         if ($noteText) {
 
             $entityName = sprintf(
-                '%s\\Model\\%sNote',
+                'Boxspaced\\Cms%sModule\\Model\\%sNote',
                 ucfirst($module),
                 ucfirst($module)
             );
@@ -213,7 +213,7 @@ class WorkflowService
         $type = ucfirst(strtolower($module));
 
         $entityName = sprintf(
-            '%s\\Model\\%s',
+            'Boxspaced\Cms%sModule\\Model\\%s',
             $type,
             $type
         );
@@ -236,7 +236,11 @@ class WorkflowService
         $parts = explode('\\', get_class($content));
         $type = array_pop($parts);
 
-        $adapter = $type . '\\Model\\Workflowable' . $type;
+        $adapter = sprintf(
+            'Boxspaced\\Cms%sModule\\Model\\Workflowable%s',
+            $type,
+            $type
+        );
 
         return new $adapter($content);
     }
