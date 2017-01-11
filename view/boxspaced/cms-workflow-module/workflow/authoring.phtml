@@ -49,7 +49,7 @@
                 </thead>
                 <tbody>
                     <?php if ($this->authoringItems) : ?>
-                    <?php echo $this->partialLoop('cms-workflow-module/workflow/authoring-item.phtml', $this->authoringItems) ?>
+                    <?php echo $this->partialLoop('boxspaced/cms-workflow-module/workflow/authoring-item.phtml', $this->authoringItems) ?>
                     <?php else : ?>
                     <tr class="odd"><td width="100%">Empty result set</td><td colspan="3">&nbsp;</td></tr>
                     <?php endif; ?>
@@ -59,7 +59,7 @@
             <?php echo $this->paginationControl(
                 $this->paginator,
                 'Sliding',
-                'cms-workflow-module/workflow/admin-pagination.phtml',
+                'boxspaced/cms-workflow-module/workflow/admin-pagination.phtml',
                 [
                     'route' => [
                         'name' => 'workflow',
