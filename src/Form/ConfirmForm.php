@@ -1,5 +1,5 @@
 <?php
-namespace Workflow\Form;
+namespace Boxspaced\CmsWorkflowModule\Form;
 
 use Zend\Form\Form;
 use Zend\Form\Element;

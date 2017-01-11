@@ -1,5 +1,5 @@
 <?php
-namespace Workflow\Exception;
+namespace Boxspaced\CmsWorkflowModule\Exception;
 
 interface ExceptionInterface
 {

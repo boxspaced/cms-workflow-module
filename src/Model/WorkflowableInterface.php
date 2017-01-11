@@ -1,5 +1,5 @@
 <?php
-namespace Workflow\Model;
+namespace Boxspaced\CmsWorkflowModule\Model;
 
 interface WorkflowableInterface
 {

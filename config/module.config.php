@@ -1,8 +1,8 @@
 <?php
-namespace Workflow;
+namespace Boxspaced\CmsWorkflowModule;
 
 use Zend\Router\Http\Segment;
-use Core\Model\ServiceFactory;
+use Boxspaced\CmsCoreModule\Model\ServiceFactory;
 use Zend\Permissions\Acl\Acl;
 
 return [

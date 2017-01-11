@@ -1,3 +1,6 @@
+<?php
+use Boxspaced\CmsWorkflowModule\Service\WorkflowService;
+?>
 <tr class="<?php echo ($this->partialLoop()->getPartialCounter() % 2) ? 'odd' : 'even' ?>">
 
 <td width="100%">
@@ -11,7 +14,7 @@ Version: <em><?php echo $this->escapeHtml($this->workflowStatus) ?></em><br />
 Authored by <em><?php echo $this->escapeHtml($this->authorUsername) ?></em> on <em><?php echo $this->date($this->authoredTime, 'l, F j, Y') ?></em> at <em><?php echo $this->date($this->authoredTime, 'H:i') ?></em></div></td>
 
 <?php if ($this->moduleName !== 'block') : ?>
-<?php if ($this->workflowStatus == Workflow\Service\WorkflowService::WORKFLOW_STATUS_NEW) : ?>
+<?php if ($this->workflowStatus == WorkflowService::WORKFLOW_STATUS_NEW) : ?>
 <td><input type="button" class="publishing-index-preview-menu-button workflow-preview" value="Preview" />
 <select name="template_id">
 <?php foreach ($this->availableTemplates as $template) : ?>
@@ -45,8 +48,8 @@ Authored by <em><?php echo $this->escapeHtml($this->authorUsername) ?></em> on <
 </td>
 
 <td>
-    <a<?php if ($this->workflowStatus === Workflow\Service\WorkflowService::WORKFLOW_STATUS_UPDATE) : ?> class="link-button workflow-publish" title="Publish update"<?php else : ?> class="workflow-publish" title="Go to publishing options"<?php endif; ?> href="<?php echo $this->url($this->moduleName, ['action' => ($this->workflowStatus === Workflow\Service\WorkflowService::WORKFLOW_STATUS_UPDATE ? 'publish-update' : 'publish'), 'id' => $this->id]); ?>">
-        <?php if ($this->workflowStatus === Workflow\Service\WorkflowService::WORKFLOW_STATUS_UPDATE) : ?>
+    <a<?php if ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE) : ?> class="link-button workflow-publish" title="Publish update"<?php else : ?> class="workflow-publish" title="Go to publishing options"<?php endif; ?> href="<?php echo $this->url($this->moduleName, ['action' => ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE ? 'publish-update' : 'publish'), 'id' => $this->id]); ?>">
+        <?php if ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE) : ?>
             Publish
         <?php else : ?>
             <img src="/images/icons/publish.png" alt="Publish icon" />

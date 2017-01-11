@@ -1,14 +1,14 @@
 <?php
-namespace Workflow\Service;
+namespace Boxspaced\CmsWorkflowModule\Service;
 
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 use Zend\Log\Logger;
 use Zend\Authentication\AuthenticationService;
 use Boxspaced\EntityManager\EntityManager;
-use Workflow\Model;
-use Account\Model\UserRepository;
-use Core\Model\EntityFactory;
+use Boxspaced\CmsWorkflowModule\Model;
+use Boxspaced\CmsAccountModule\Model\UserRepository;
+use Boxspaced\CmsCoreModule\Model\EntityFactory;
 
 class WorkflowServiceFactory implements FactoryInterface
 {

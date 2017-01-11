@@ -1,19 +1,19 @@
 <?php
-namespace Workflow\Service;
+namespace Boxspaced\CmsWorkflowModule\Service;
 
 use DateTime;
-use Workflow\Model;
+use Boxspaced\CmsWorkflowModule\Model;
 use Boxspaced\EntityManager\EntityManager;
 use Zend\Authentication\AuthenticationService;
 use Zend\Db\Sql;
 use Zend\Log\Logger;
-use Workflow\Exception;
-use Account\Model\UserRepository;
-use Core\Model\EntityFactory;
-use Account\Model\User;
-use Item\Model\Item;
-use Block\Model\Block;
-use Versioning\Model\VersionableInterface;
+use Boxspaced\CmsWorkflowModule\Exception;
+use Boxspaced\CmsAccountModule\Model\UserRepository;
+use Boxspaced\CmsCoreModule\Model\EntityFactory;
+use Boxspaced\CmsAccountModule\Model\User;
+use Boxspaced\CmsItemModule\Model\Item;
+use Boxspaced\CmsBlockModule\Model\Block;
+use Boxspaced\CmsVersioningModule\Model\VersionableInterface;
 
 class WorkflowService
 {

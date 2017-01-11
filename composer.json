@@ -7,7 +7,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Workflow\\": "src/"
+            "Boxspaced\\CmsWorkflowModule\\": "src/"
         }
     },
     "config": {
@@ -30,7 +30,7 @@
     ],
     "extra": {
         "zf": {
-            "module": "Workflow"
+            "module": "Boxspaced\\CmsWorkflowModule"
         }
     }
 }

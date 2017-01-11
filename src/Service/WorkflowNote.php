@@ -1,5 +1,5 @@
 <?php
-namespace Workflow\Service;
+namespace Boxspaced\CmsWorkflowModule\Service;
 
 class WorkflowNote
 {

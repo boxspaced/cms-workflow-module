@@ -1,8 +1,8 @@
 <?php
-namespace Workflow\Model;
+namespace Boxspaced\CmsWorkflowModule\Model;
 
-use Workflow\Exception;
-use Versioning\Model\VersionableInterface;
+use Boxspaced\CmsWorkflowModule\Exception;
+use Boxspaced\CmsVersioningModule\Model\VersionableInterface;
 
 class WorkflowService
 {

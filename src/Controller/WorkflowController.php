@@ -1,11 +1,11 @@
 <?php
-namespace Workflow\Controller;
+namespace Boxspaced\CmsWorkflowModule\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Workflow\Service;
+use Boxspaced\CmsWorkflowModule\Service;
 use Zend\Log\Logger;
-use Workflow\Form;
+use Boxspaced\CmsWorkflowModule\Form;
 use Zend\Paginator;
 
 class WorkflowController extends AbstractActionController

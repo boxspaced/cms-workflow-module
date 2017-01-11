@@ -1,3 +1,6 @@
+<?php
+use Boxspaced\CmsWorkflowModule\Model\WorkflowableInterface;
+?>
 <tr class="<?php echo ($this->partialLoop()->getPartialCounter() % 2) ? 'odd' : 'even' ?>">
 
 <td width="100%">
@@ -28,8 +31,8 @@ Authored by <em>you</em> on <em><?php echo $this->date($this->authoredTime, 'l, 
 
 <?php
 $allowedStages = [
-    Workflow\Model\WorkflowableInterface::WORKFLOW_STAGE_AUTHORING,
-    Workflow\Model\WorkflowableInterface::WORKFLOW_STAGE_REJECTED,
+    WorkflowableInterface::WORKFLOW_STAGE_AUTHORING,
+    WorkflowableInterface::WORKFLOW_STAGE_REJECTED,
 ];
 ?>
 

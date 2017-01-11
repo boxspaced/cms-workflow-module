@@ -1,12 +1,12 @@
 <?php
-namespace Workflow\Controller;
+namespace Boxspaced\CmsWorkflowModule\Controller;
 
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
-use Workflow\Controller\WorkflowController;
-use Workflow\Service\WorkflowService;
+use Boxspaced\CmsWorkflowModule\Controller\WorkflowController;
+use Boxspaced\CmsWorkflowModule\Service\WorkflowService;
 use Zend\Log\Logger;
-use Core\Controller\AbstractControllerFactory;
+use Boxspaced\CmsCoreModule\Controller\AbstractControllerFactory;
 
 class WorkflowControllerFactory extends AbstractControllerFactory implements FactoryInterface
 {

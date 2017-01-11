@@ -1,5 +1,5 @@
 <?php
-namespace Workflow;
+namespace Boxspaced\CmsWorkflowModule;
 
 class Module
 {
