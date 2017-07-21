@@ -7,6 +7,7 @@ use Boxspaced\CmsWorkflowModule\Service;
 use Zend\Log\Logger;
 use Boxspaced\CmsWorkflowModule\Form;
 use Zend\Paginator;
+use Zend\EventManager\EventManagerInterface;
 
 class WorkflowController extends AbstractActionController
 {
@@ -46,7 +47,19 @@ class WorkflowController extends AbstractActionController
         $this->config = $config;
 
         $this->view = new ViewModel();
-        $this->view->setTerminal(true);
+    }
+
+    /**
+     * @param EventManagerInterface $events
+     * @return void
+     */
+    public function setEventManager(EventManagerInterface $events)
+    {
+        parent::setEventManager($events);
+        $controller = $this;
+        $events->attach('dispatch', function ($e) use ($controller) {
+            $controller->layout('layout/admin');
+        }, 100);
     }
 
     /**
