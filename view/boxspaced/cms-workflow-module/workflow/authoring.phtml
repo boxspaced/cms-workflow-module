@@ -1,60 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title></title>
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <link rel="stylesheet" type="text/css" href="/css/admin.css" />
-        <script type="text/javascript" src="/js/admin.js"></script>
-    </head>
 
-    <body class="yui-skin-sam"><?php echo $this->adminNavigation ?>
+        <div class="row">
+            <div class="col-md-12">
 
-        <div class="title">Index of: Authoring</div>
+                <h1>Index of: Authoring</h1>
 
-        <?php echo $this->messages() ?>
+                <div class="actions">
+                    <img src="/images/icons/add.png" alt="Add icon" />
+                    <a class="link-button" href="<?php echo $this->url('item', ['action' => 'create']); ?>">Create new</a>
+                </div>
 
-        <div class="actions">
-            <img src="/images/icons/add.png" alt="Add icon" />
-            <a class="link-button" href="<?php echo $this->url('item', ['action' => 'create']); ?>">Create new</a>
-        </div><!-- End actions div -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th colspan="3">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if ($this->authoringItems) : ?>
+                        <?php echo $this->partialLoop('boxspaced/cms-workflow-module/workflow/authoring-item.phtml', $this->authoringItems) ?>
+                        <?php else : ?>
+                        <tr class="odd"><td width="100%">Empty result set</td><td colspan="3">&nbsp;</td></tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
 
-        </div><!-- End top area -->
-
-        <div id="stage"><!-- Start stage area -->
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th colspan="3">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if ($this->authoringItems) : ?>
-                    <?php echo $this->partialLoop('boxspaced/cms-workflow-module/workflow/authoring-item.phtml', $this->authoringItems) ?>
-                    <?php else : ?>
-                    <tr class="odd"><td width="100%">Empty result set</td><td colspan="3">&nbsp;</td></tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-
-            <?php echo $this->paginationControl(
-                $this->paginator,
-                'Sliding',
-                'boxspaced/cms-workflow-module/workflow/admin-pagination.phtml',
-                [
-                    'route' => [
-                        'name' => 'workflow',
-                        'params' => [
-                            'action' => 'authoring',
+                <?php echo $this->paginationControl(
+                    $this->paginator,
+                    'Sliding',
+                    'boxspaced/cms-workflow-module/workflow/admin-pagination.phtml',
+                    [
+                        'route' => [
+                            'name' => 'workflow',
+                            'params' => [
+                                'action' => 'authoring',
+                            ],
                         ],
-                    ],
-                ]
-            ); ?>
+                    ]
+                ); ?>
 
-        </div><!-- End stage area -->
-
-    </body>
-</html>
+            </div>
+        </div>

@@ -1,52 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title></title>
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <link rel="stylesheet" type="text/css" href="/css/admin.css" />
-        <script type="text/javascript" src="/js/admin.js"></script>
-    </head>
 
-    <body class="yui-skin-sam">
+                <div class="white-box">
+                    <div class="white-box-rounded-corner-top"><div></div></div>
+                    <div class="white-box-content">
+                        <div class="white-box-title">Please confirm this action</div>
 
-        <div id="top"><!-- Start top area -->
+                        <?php echo $this->messages() ?>
 
-        </div><!-- End top area -->
+                        <?php
+                        $form = $this->form;
+                        $form->prepare();
+                        ?>
 
-        <div id="stage"><!-- Start stage area -->
+                        <?php echo $this->form()->openTag($form) ?>
 
-            <div class="white-box" style="margin: 10% auto 0 auto; width: 500px;"><!-- Start fieldset -->
-                <div class="white-box-rounded-corner-top"><div></div></div>
-                <div class="white-box-content">
-                    <div class="white-box-title">Please confirm this action</div>
-                    <?php echo $this->messages() ?>
+                            <?php echo $this->adminFormElement($form->get('id')) ?>
+                            <?php echo $this->adminFormElement($form->get('moduleName')) ?>
+                            <?php echo $this->adminFormElement($form->get('token')) ?>
 
-                    <?php
-                    $form = $this->form;
-                    $form->prepare();
-                    ?>
-
-                    <?php echo $this->form()->openTag($form) ?>
-
-                        <?php echo $this->adminFormElement($form->get('id')) ?>
-                        <?php echo $this->adminFormElement($form->get('moduleName')) ?>
-                        <?php echo $this->adminFormElement($form->get('token')) ?>
-
-                        <div class="form-element">
-                            <div class="form-inputs line-up">
-                                <?php
-                                $form->get('confirm')->setAttribute('class', 'button');
-                                echo $this->formElement($form->get('confirm')) ?>
+                            <div class="form-element">
+                                <div class="form-inputs line-up">
+                                    <?php
+                                    $form->get('confirm')->setAttribute('class', 'button');
+                                    echo $this->formElement($form->get('confirm')) ?>
+                                </div>
                             </div>
-                        </div>
-                    <?php echo $this->form()->closeTag() ?>
+                        <?php echo $this->form()->closeTag() ?>
 
+                    </div>
                 </div>
-            </div><!-- End fieldset -->
-
-        </div><!-- End stage area -->
-
-    </body>
-</html>

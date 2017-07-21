@@ -77,7 +77,7 @@ class WorkflowController extends AbstractActionController
     {
         $adminNavigation = $this->adminNavigationWidget();
         if (null !== $adminNavigation) {
-            $this->view->addChild($adminNavigation, 'adminNavigation');
+            $this->layout()->addChild($adminNavigation, 'adminNavigation');
         }
 
         $adapter = new Paginator\Adapter\Callback(
@@ -105,6 +105,7 @@ class WorkflowController extends AbstractActionController
      */
     public function authoringDeleteAction()
     {
+        $this->layout('layout/dialog');
         $this->view->setTemplate('boxspaced/cms-workflow-module/workflow/confirm.phtml');
         return $this->handleDelete('authoring');
     }
@@ -114,6 +115,7 @@ class WorkflowController extends AbstractActionController
      */
     public function publishingDeleteAction()
     {
+        $this->layout('layout/dialog');
         $this->view->setTemplate('boxspaced/cms-workflow-module/workflow/confirm.phtml');
         return $this->handleDelete('publishing');
     }
@@ -161,7 +163,7 @@ class WorkflowController extends AbstractActionController
     {
         $adminNavigation = $this->adminNavigationWidget();
         if (null !== $adminNavigation) {
-            $this->view->addChild($adminNavigation, 'adminNavigation');
+            $this->layout()->addChild($adminNavigation, 'adminNavigation');
         }
 
         $adapter = new Paginator\Adapter\Callback(
