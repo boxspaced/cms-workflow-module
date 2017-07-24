@@ -2,7 +2,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <h1>Index of: Publishing</h1>
+                <h1>Publishing</h1>
 
                 <div id="send_back_dialog">
                     <div class="hd">Send back to author</div>
@@ -17,12 +17,6 @@
                 </div>
 
                 <table class="table">
-                    <thead>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th colspan="5">Actions</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <?php if ($this->publishingItems) : ?>
                         <?php echo $this->partialLoop('boxspaced/cms-workflow-module/workflow/publishing-item.phtml', $this->publishingItems) ?>
