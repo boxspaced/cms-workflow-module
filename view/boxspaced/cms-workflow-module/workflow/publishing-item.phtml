@@ -62,7 +62,7 @@ Authored by <em><?php echo $this->escapeHtml($this->authorUsername) ?></em> on <
 </td>
 
 <td>
-    <a id="<?php echo $this->escapeHtmlAttr($this->moduleName) ?>|<?php echo $this->escapeHtmlAttr($this->id) ?>" href="<?php echo $this->url('workflow', ['action' => 'send-back'], ['query' => ['moduleName' => $this->moduleName, 'id' => $this->id]]); ?>" class="workflow-send-back" title="Send back to author"><img src="/images/icons/arrow_left.png" alt="Arrow left icon" /></a>
+    <img class="clickable-icon" src="/images/icons/arrow_left.png" alt="Arrow left icon" title="Send back to author" data-module-name="<?php echo $this->escapeHtmlAttr($this->moduleName) ?>" data-id="<?php echo $this->escapeHtmlAttr($this->id) ?>" data-send-back-to-author-btn>
 </td>
 
 <td>

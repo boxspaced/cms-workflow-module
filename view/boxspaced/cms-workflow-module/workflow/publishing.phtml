@@ -1,18 +1,60 @@
+<?php
+
+$script = <<<SCRIPT
+$(function(){
+
+    function showSendBackToAuthorModal(moduleName, id) {
+        var modal = $('[data-send-back-to-author-modal]');
+        modal.find('input[name="moduleName"]').val(moduleName);
+        modal.find('input[name="id"]').val(id);
+        modal.modal('show');
+    }
+
+    $(document).ready(function() {
+
+        $('[data-send-back-to-author-btn]').click(function(event) {
+            event.preventDefault();
+            var moduleName = $(this).data('module-name');
+            var id = $(this).data('id');
+            showSendBackToAuthorModal(moduleName, id);
+        });
+
+        $('[data-send-back-to-author-modal] [data-ok-btn]').click(function(event) {
+            event.preventDefault();
+            $('[data-send-back-to-author-modal]').find('form').submit();
+        });
+    });
+});
+SCRIPT;
+$this->inlineScript()->appendScript($script);
+
+?>
 
         <div class="row">
             <div class="col-md-12">
 
                 <h1>Publishing</h1>
 
-                <div id="send_back_dialog">
-                    <div class="hd">Send back to author</div>
-                    <div class="bd">
-                        <form method="post" action="<?php echo $this->url('workflow', ['action' => 'send-back']); ?>">
-                            <input type="hidden" name="moduleName" value="" />
-                            <input type="hidden" name="id" value="" />
-                            <label for="notes" style="display: block;">Add a note:</label>
-                            <textarea name="notes" style="width: 28em; height: 8em;"></textarea>
-                        </form>
+                <div class="modal" tabindex="-1" data-send-back-to-author-modal>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Send back to author</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="<?php echo $this->url('workflow', ['action' => 'send-back']); ?>">
+                                    <input type="hidden" name="moduleName" value="" />
+                                    <input type="hidden" name="id" value="" />
+                                    <label for="notes" style="display: block;">Add a note:</label>
+                                    <textarea name="notes" style="width: 28em; height: 8em;"></textarea>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary" data-ok-btn>OK</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
