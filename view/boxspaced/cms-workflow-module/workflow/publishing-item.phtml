@@ -66,7 +66,7 @@ Authored by <em><?php echo $this->escapeHtml($this->authorUsername) ?></em> on <
 </td>
 
 <td>
-    <a<?php if ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE) : ?> class="link-button workflow-publish" title="Publish update"<?php else : ?> class="workflow-publish" title="Go to publishing options"<?php endif; ?> href="<?php echo $this->url($this->moduleName, ['action' => ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE ? 'publish-update' : 'publish'), 'id' => $this->id]); ?>">
+    <a<?php if ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE) : ?> class="btn btn-success workflow-publish" title="Publish update"<?php else : ?> class="workflow-publish" title="Go to publishing options"<?php endif; ?> href="<?php echo $this->url($this->moduleName, ['action' => ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE ? 'publish-update' : 'publish'), 'id' => $this->id]); ?>">
         <?php if ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE) : ?>
             Publish
         <?php else : ?>

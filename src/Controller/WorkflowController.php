@@ -75,11 +75,6 @@ class WorkflowController extends AbstractActionController
      */
     public function authoringAction()
     {
-        $adminNavigation = $this->adminNavigationWidget();
-        if (null !== $adminNavigation) {
-            $this->layout()->addChild($adminNavigation, 'adminNavigation');
-        }
-
         $adapter = new Paginator\Adapter\Callback(
             function ($offset, $itemCountPerPage) {
                 return $this->workflowService->getContentInAuthoring($offset, $itemCountPerPage);
@@ -161,11 +156,6 @@ class WorkflowController extends AbstractActionController
      */
     public function publishingAction()
     {
-        $adminNavigation = $this->adminNavigationWidget();
-        if (null !== $adminNavigation) {
-            $this->layout()->addChild($adminNavigation, 'adminNavigation');
-        }
-
         $adapter = new Paginator\Adapter\Callback(
             function ($offset, $itemCountPerPage) {
                 return $this->workflowService->getContentInPublishing($offset, $itemCountPerPage);

@@ -19,6 +19,8 @@ class WorkflowControllerFactory extends AbstractControllerFactory implements Fac
             $container->get('config')
         );
 
+        $this->adminNavigationWidget($controller);
+
         return $this->forceHttps($controller, $container);
     }
 

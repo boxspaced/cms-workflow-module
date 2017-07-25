@@ -58,15 +58,19 @@ $this->inlineScript()->appendScript($script);
                     </div>
                 </div>
 
-                <table class="table">
-                    <tbody>
-                        <?php if ($this->publishingItems) : ?>
-                        <?php echo $this->partialLoop('boxspaced/cms-workflow-module/workflow/publishing-item.phtml', $this->publishingItems) ?>
-                        <?php else : ?>
-                        <tr class="odd"><td width="100%">Empty result set</td><td colspan="5">&nbsp;</td></tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
+                <div class="panel panel-default">
+
+                    <table class="table">
+                        <tbody>
+                            <?php if ($this->publishingItems) : ?>
+                            <?php echo $this->partialLoop('boxspaced/cms-workflow-module/workflow/publishing-item.phtml', $this->publishingItems) ?>
+                            <?php else : ?>
+                            <tr class="odd"><td width="100%">Empty result set</td><td colspan="5">&nbsp;</td></tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+
+                </div>
 
                 <?php echo $this->paginationControl(
                     $this->paginator,
