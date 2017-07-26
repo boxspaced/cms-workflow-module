@@ -22,7 +22,7 @@ Authored by <em><?php echo $this->escapeHtml($this->authorUsername) ?></em> on <
         </button>
         <ul class="dropdown-menu">
             <?php foreach ($this->availableTemplates as $template) : ?>
-            <li><a onclick="open_preview('<?php echo $this->url('content', ['slug' => $this->name], ['query' => ['preview' => 'publishing', 'templateId' => $template->id]]); ?>')">with <?php echo $this->escapeHtml($template->name) ?> template</a></li>
+            <li><a href="javascript:void(0)" onclick="open_preview('<?php echo $this->url('content', ['slug' => $this->name], ['query' => ['preview' => 'publishing', 'templateId' => $template->id]]); ?>')">with <?php echo $this->escapeHtml($template->name) ?> template</a></li>
             <?php endforeach; ?>
         </ul>
     </div>
