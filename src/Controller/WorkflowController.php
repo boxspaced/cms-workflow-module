@@ -7,6 +7,7 @@ use Boxspaced\CmsWorkflowModule\Service;
 use Zend\Log\Logger;
 use Boxspaced\CmsWorkflowModule\Form;
 use Zend\Paginator;
+use Zend\EventManager\EventManagerInterface;
 
 class WorkflowController extends AbstractActionController
 {
@@ -46,7 +47,19 @@ class WorkflowController extends AbstractActionController
         $this->config = $config;
 
         $this->view = new ViewModel();
-        $this->view->setTerminal(true);
+    }
+
+    /**
+     * @param EventManagerInterface $events
+     * @return void
+     */
+    public function setEventManager(EventManagerInterface $events)
+    {
+        parent::setEventManager($events);
+        $controller = $this;
+        $events->attach('dispatch', function ($e) use ($controller) {
+            $controller->layout('layout/admin');
+        }, 100);
     }
 
     /**
@@ -62,11 +75,6 @@ class WorkflowController extends AbstractActionController
      */
     public function authoringAction()
     {
-        $adminNavigation = $this->adminNavigationWidget();
-        if (null !== $adminNavigation) {
-            $this->view->addChild($adminNavigation, 'adminNavigation');
-        }
-
         $adapter = new Paginator\Adapter\Callback(
             function ($offset, $itemCountPerPage) {
                 return $this->workflowService->getContentInAuthoring($offset, $itemCountPerPage);
@@ -92,6 +100,7 @@ class WorkflowController extends AbstractActionController
      */
     public function authoringDeleteAction()
     {
+        $this->layout('layout/dialog');
         $this->view->setTemplate('boxspaced/cms-workflow-module/workflow/confirm.phtml');
         return $this->handleDelete('authoring');
     }
@@ -101,6 +110,7 @@ class WorkflowController extends AbstractActionController
      */
     public function publishingDeleteAction()
     {
+        $this->layout('layout/dialog');
         $this->view->setTemplate('boxspaced/cms-workflow-module/workflow/confirm.phtml');
         return $this->handleDelete('publishing');
     }
@@ -146,11 +156,6 @@ class WorkflowController extends AbstractActionController
      */
     public function publishingAction()
     {
-        $adminNavigation = $this->adminNavigationWidget();
-        if (null !== $adminNavigation) {
-            $this->view->addChild($adminNavigation, 'adminNavigation');
-        }
-
         $adapter = new Paginator\Adapter\Callback(
             function ($offset, $itemCountPerPage) {
                 return $this->workflowService->getContentInPublishing($offset, $itemCountPerPage);

@@ -6,20 +6,17 @@ use Interop\Container\ContainerInterface;
 use Boxspaced\CmsWorkflowModule\Controller\WorkflowController;
 use Boxspaced\CmsWorkflowModule\Service\WorkflowService;
 use Zend\Log\Logger;
-use Boxspaced\CmsCoreModule\Controller\AbstractControllerFactory;
 
-class WorkflowControllerFactory extends AbstractControllerFactory implements FactoryInterface
+class WorkflowControllerFactory implements FactoryInterface
 {
 
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $controller = new WorkflowController(
+        return new WorkflowController(
             $container->get(WorkflowService::class),
             $container->get(Logger::class),
             $container->get('config')
         );
-
-        return $this->forceHttps($controller, $container);
     }
 
 }

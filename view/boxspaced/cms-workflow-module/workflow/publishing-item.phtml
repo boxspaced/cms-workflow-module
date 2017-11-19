@@ -15,40 +15,58 @@ Authored by <em><?php echo $this->escapeHtml($this->authorUsername) ?></em> on <
 
 <?php if ($this->moduleName !== 'block') : ?>
 <?php if ($this->workflowStatus == WorkflowService::WORKFLOW_STATUS_NEW) : ?>
-<td><input type="button" class="publishing-index-preview-menu-button workflow-preview" value="Preview" />
-<select name="template_id">
-<?php foreach ($this->availableTemplates as $template) : ?>
-<option value="<?php echo $this->url('content', ['slug' => $this->name], ['query' => ['preview' => 'publishing', 'templateId' => $template->id]]); ?>">with <?php echo $this->escapeHtml($template->name) ?> template</option>
-<?php endforeach; ?>
-</select></td>
+<td>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Preview <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <?php foreach ($this->availableTemplates as $template) : ?>
+            <li><a href="javascript:void(0)" onclick="open_preview('<?php echo $this->url('content', ['slug' => $this->name], ['query' => ['preview' => 'publishing', 'templateId' => $template->id]]); ?>')">with <?php echo $this->escapeHtml($template->name) ?> template</a></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</td>
 <?php else : ?>
-<td><a class="link-button workflow-preview" onclick="open_preview('<?php echo $this->url('content', ['slug' => $this->name], ['query' => ['preview' => 'publishing', 'contentId' => $this->id]]); ?>')">Preview</a></td>
+<td><a class="btn btn-default" onclick="open_preview('<?php echo $this->url('content', ['slug' => $this->name], ['query' => ['preview' => 'publishing', 'contentId' => $this->id]]); ?>')">Preview</a></td>
 <?php endif; ?>
 <?php else : ?>
 <td>&nbsp;</td>
 <?php endif; ?>
 
-<td><img class="notes-icon clickable-icon" src="/images/icons/notes.png" alt="Notes icon" title="Notes" /><div class="notes">
-<div class="hd">Notes</div>
-<div class="bd"><p>
-    <?php if (empty($this->notes)) : ?>
-    No notes found
-    <?php else : ?>
-    <?php foreach ($this->notes as $note) : ?>
-    <?php echo $this->date($note->time, 'F j Y H:i') . ' - ' .
-    $this->escapeHtml($note->username) . ' - ' .
-    $this->escapeHtml($note->text) ?><br />
-    <?php endforeach; ?>
-    <?php endif; ?>
-    </p></div>
-</div></td>
-
 <td>
-    <a id="<?php echo $this->escapeHtmlAttr($this->moduleName) ?>|<?php echo $this->escapeHtmlAttr($this->id) ?>" href="<?php echo $this->url('workflow', ['action' => 'send-back'], ['query' => ['moduleName' => $this->moduleName, 'id' => $this->id]]); ?>" class="workflow-send-back" title="Send back to author"><img src="/images/icons/arrow_left.png" alt="Arrow left icon" /></a>
+    <img class="clickable-icon" src="/images/icons/notes.png" alt="Notes icon" title="Notes" data-toggle="modal" data-target="#notes-modal-<?php echo $this->moduleName ?>-<?php echo $this->id ?>" />
+    <div class="modal" tabindex="-1" id="notes-modal-<?php echo $this->moduleName ?>-<?php echo $this->id ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Notes</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <?php if (empty($this->notes)) : ?>
+                        No notes found
+                        <?php else : ?>
+                        <?php foreach ($this->notes as $note) : ?>
+                        <?php echo $this->date($note->time, 'F j Y H:i') . ' - ' .
+                        $this->escapeHtml($note->username) . ' - ' .
+                        $this->escapeHtml($note->text) ?><br />
+                        <?php endforeach; ?>
+                        <?php endif; ?>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </td>
 
 <td>
-    <a<?php if ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE) : ?> class="link-button workflow-publish" title="Publish update"<?php else : ?> class="workflow-publish" title="Go to publishing options"<?php endif; ?> href="<?php echo $this->url($this->moduleName, ['action' => ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE ? 'publish-update' : 'publish'), 'id' => $this->id]); ?>">
+    <img class="clickable-icon" src="/images/icons/arrow_left.png" alt="Arrow left icon" title="Send back to author" data-module-name="<?php echo $this->escapeHtmlAttr($this->moduleName) ?>" data-id="<?php echo $this->escapeHtmlAttr($this->id) ?>" data-send-back-to-author-btn>
+</td>
+
+<td>
+    <a<?php if ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE) : ?> class="btn btn-success workflow-publish" title="Publish update"<?php else : ?> class="workflow-publish" title="Go to publishing options"<?php endif; ?> href="<?php echo $this->url($this->moduleName, ['action' => ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE ? 'publish-update' : 'publish'), 'id' => $this->id]); ?>">
         <?php if ($this->workflowStatus === WorkflowService::WORKFLOW_STATUS_UPDATE) : ?>
             Publish
         <?php else : ?>

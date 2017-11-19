@@ -1,83 +1,90 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title></title>
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
+<?php
 
-        <link rel="stylesheet" type="text/css" href="/yui/reset/reset-min.css" />
-        <link rel="stylesheet" type="text/css" href="/yui/fonts/fonts-min.css" />
-        <link rel="stylesheet" type="text/css" href="/yui/menu/assets/skins/sam/menu.css" />
-        <link rel="stylesheet" type="text/css" href="/yui/button/assets/skins/sam/button.css" />
-        <link rel="stylesheet" type="text/css" href="/yui/container/assets/skins/sam/container.css" />
+$script = <<<SCRIPT
+$(function(){
 
-        <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    function showSendBackToAuthorModal(moduleName, id) {
+        var modal = $('[data-send-back-to-author-modal]');
+        modal.find('input[name="moduleName"]').val(moduleName);
+        modal.find('input[name="id"]').val(id);
+        modal.modal('show');
+    }
 
-        <script type="text/javascript" src="/yui/utilities/utilities.js"></script>
-        <script type="text/javascript" src="/yui/container/container-min.js"></script>
-        <script type="text/javascript" src="/yui/menu/menu-min.js"></script>
-        <script type="text/javascript" src="/yui/button/button-min.js"></script>
+    $(document).ready(function() {
 
-        <script type="text/javascript" src="/js/general.js"></script>
-        <script type="text/javascript" src="/js/dynamic_tables.js"></script>
-        <script type="text/javascript" src="/js/buttons.js"></script>
-        <script type="text/javascript" src="/js/dialogs.js"></script>
-    </head>
+        $('[data-send-back-to-author-btn]').click(function(event) {
+            event.preventDefault();
+            var moduleName = $(this).data('module-name');
+            var id = $(this).data('id');
+            showSendBackToAuthorModal(moduleName, id);
+        });
 
-    <body class="yui-skin-sam"><?php echo $this->adminNavigation ?>
+        $('[data-send-back-to-author-modal] [data-ok-btn]').click(function(event) {
+            event.preventDefault();
+            $('[data-send-back-to-author-modal]').find('form').submit();
+        });
+    });
+});
+SCRIPT;
+$this->inlineScript()->appendScript($script);
 
-        <div class="title">Index of: Publishing</div>
+?>
 
-        <?php echo $this->messages() ?>
+        <div class="row">
+            <div class="col-md-12">
 
-        </div><!-- End top area -->
+                <h1>Publishing</h1>
 
-        <div id="stage"><!-- Start stage area -->
-
-            <div id="send_back_dialog">
-                <div class="hd">Send back to author</div>
-                <div class="bd">
-                    <form method="post" action="<?php echo $this->url('workflow', ['action' => 'send-back']); ?>">
-                        <input type="hidden" name="moduleName" value="" />
-                        <input type="hidden" name="id" value="" />
-                        <label for="notes" style="display: block;">Add a note:</label>
-                        <textarea name="notes" style="width: 28em; height: 8em;"></textarea>
-                    </form>
+                <div class="modal" tabindex="-1" data-send-back-to-author-modal>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Send back to author</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="<?php echo $this->url('workflow', ['action' => 'send-back']); ?>">
+                                    <input type="hidden" name="moduleName" value="" />
+                                    <input type="hidden" name="id" value="" />
+                                    <label for="notes" style="display: block;">Add a note:</label>
+                                    <textarea name="notes" style="width: 28em; height: 8em;"></textarea>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary" data-ok-btn>OK</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th colspan="5">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if ($this->publishingItems) : ?>
-                    <?php echo $this->partialLoop('boxspaced/cms-workflow-module/workflow/publishing-item.phtml', $this->publishingItems) ?>
-                    <?php else : ?>
-                    <tr class="odd"><td width="100%">Empty result set</td><td colspan="5">&nbsp;</td></tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
+                <div class="panel panel-default">
 
-            <?php echo $this->paginationControl(
-                $this->paginator,
-                'Sliding',
-                'boxspaced/cms-workflow-module/workflow/admin-pagination.phtml',
-                [
-                    'route' => [
-                        'name' => 'workflow',
-                        'params' => [
-                            'action' => 'publishing',
+                    <table class="table">
+                        <tbody>
+                            <?php if ($this->publishingItems) : ?>
+                            <?php echo $this->partialLoop('boxspaced/cms-workflow-module/workflow/publishing-item.phtml', $this->publishingItems) ?>
+                            <?php else : ?>
+                            <tr class="odd"><td width="100%">Empty result set</td><td colspan="5">&nbsp;</td></tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <?php echo $this->paginationControl(
+                    $this->paginator,
+                    'Sliding',
+                    'boxspaced/cms-core-module/partial/pagination.phtml',
+                    [
+                        'route' => [
+                            'name' => 'workflow',
+                            'params' => [
+                                'action' => 'publishing',
+                            ],
                         ],
-                    ],
-                ]
-            ); ?>
+                    ]
+                ); ?>
 
-        </div><!-- End stage area -->
-
-    </body>
-</html>
+            </div>
+        </div>
